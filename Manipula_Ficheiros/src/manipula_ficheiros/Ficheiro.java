@@ -1,10 +1,10 @@
 
 package manipula_ficheiros;
 
-import java.awt.Desktop;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import static javafx.scene.input.KeyCode.C;
 
 
 
@@ -16,13 +16,22 @@ class Ficheiro {
         nome = Manipula_Ficheiros.ler.nextLine();
         nome = Manipula_Ficheiros.ler.next();
         File ficheiro = new File (nome);
-        if(!ficheiro.exists()){
-            try {
-                ficheiro.createNewFile();
-            } catch (IOException ex) {
-                 ex.printStackTrace();
-            }
-            }
+        try { 
+            if(!ficheiro.exists()){         
+                ficheiro.createNewFile();  
+                }  
+                FileWriter fw = new FileWriter(ficheiro, true); 
+                BufferedWriter bw = new BufferedWriter (fw); 
+                String texto; 
+                System.out.println("Insira o conteudo"); 
+                texto = Manipula_Ficheiros.ler.nextLine(); 
+                texto = Manipula_Ficheiros.ler.nextLine(); 
+                bw.write(texto); 
+                bw.newLine(); 
+                bw.close(); 
+                fw.close(); 
+            } catch (IOException ex){ 
+                ex.printStackTrace(); } 
         }
 
     static void verificaSeExiste() {
